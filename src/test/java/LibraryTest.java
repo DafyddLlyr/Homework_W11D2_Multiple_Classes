@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -63,19 +65,13 @@ public class LibraryTest {
     }
 
     @Test
-    public void borrowerCanBorrowBook(){
+    public void libraryCanTrackBooksByGenre(){
         library.addBook(book1);
-        borrower.borrow(library, book1);
-        assertEquals(0, library.numberOfBooks());
-        assertEquals(1, borrower.numberOfBooks());
+        library.addBook(book2);
+        library.addBook(book3);
+        HashMap<String, Integer> genre = new HashMap<String, Integer>();
+        genre.put("Travel", 1);
+        genre.put("Fantasy", 2);
+        assertEquals(genre, library.booksByGenre());
     }
-
-    @Test
-    public void borrowerCannotRemoveBookIfDoesntExist(){
-        library.addBook(book1);
-        borrower.borrow(library, book2);
-        assertEquals(1, library.numberOfBooks());
-        assertEquals(0, borrower.numberOfBooks());
-    }
-
 }
