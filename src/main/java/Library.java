@@ -38,11 +38,11 @@ public class Library {
         HashMap<String, Integer> genres = new HashMap<String, Integer>();
         for(Book book : stock){
             String key = book.getGenre();
-            if(genres.containsKey(book.getGenre())){
+            if(genres.containsKey(key)){
                 Integer value = genres.get(key);
                 genres.put(key, (value += 1));
             } else {
-                genres.put(book.getGenre(), 1);
+                genres.put(key, 1);
             }
         }
         return genres;
